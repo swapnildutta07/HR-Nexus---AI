@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X, Hexagon } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+
 export function Navbar() {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const links = [
   {
@@ -67,10 +70,14 @@ export function Navbar() {
 
         {/* Desktop Buttons */}
         <div className="hidden md:flex items-center gap-4">
-          <button className="px-5 py-2 text-blue-600 font-medium border border-gray-200 rounded-[14px] hover:border-blue-600 hover:bg-blue-50 transition-all duration-300 text-sm">
+          <button
+            onClick={() => navigate('/login')}
+            className="px-5 py-2 text-blue-600 font-medium border border-gray-200 rounded-[14px] hover:border-blue-600 hover:bg-blue-50 transition-all duration-300 text-sm">
             Login
           </button>
-          <button className="px-5 py-2 bg-blue-600 text-white font-medium rounded-[14px] hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-600/20 transition-all duration-300 hover:scale-[1.02] text-sm">
+          <button
+            onClick={() => navigate('/register')}
+            className="px-5 py-2 bg-blue-600 text-white font-medium rounded-[14px] hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-600/20 transition-all duration-300 hover:scale-[1.02] text-sm">
             Get Started
           </button>
         </div>
@@ -109,10 +116,20 @@ export function Navbar() {
             </a>
         )}
           <div className="flex flex-col gap-3 pt-4 border-t border-gray-100">
-            <button className="w-full py-3 text-blue-600 font-medium border border-gray-200 rounded-[14px] hover:bg-slate-50">
+            <button
+              onClick={() => {
+                setIsOpen(false);
+                navigate('/login');
+              }}
+              className="w-full py-3 text-blue-600 font-medium border border-gray-200 rounded-[14px] hover:bg-slate-50">
               Login
             </button>
-            <button className="w-full py-3 bg-blue-600 text-white font-medium rounded-[14px] hover:bg-blue-700">
+            <button
+              onClick={() => {
+                setIsOpen(false);
+                navigate('/register');
+              }}
+              className="w-full py-3 bg-blue-600 text-white font-medium rounded-[14px] hover:bg-blue-700">
               Get Started
             </button>
           </div>

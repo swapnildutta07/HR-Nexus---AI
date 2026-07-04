@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import {
   AreaChart,
   Area,
@@ -55,6 +56,7 @@ const chartData = [
 }];
 
 export function Hero() {
+  const navigate = useNavigate();
   return (
     <section
       id="home"
@@ -108,10 +110,14 @@ export function Hero() {
             </div>
 
             <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-              <button className="w-full sm:w-auto px-8 py-4 bg-blue-600 text-white font-medium rounded-[14px] hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-600/20 transition-all duration-300 hover:-translate-y-0.5 flex items-center justify-center gap-2">
+              <button
+                onClick={() => navigate('/register')}
+                className="w-full sm:w-auto px-8 py-4 bg-blue-600 text-white font-medium rounded-[14px] hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-600/20 transition-all duration-300 hover:-translate-y-0.5 flex items-center justify-center gap-2">
                 Get Started <ArrowRight className="w-4 h-4" />
               </button>
-              <button className="w-full sm:w-auto px-8 py-4 text-slate-700 font-medium bg-white border border-gray-200 rounded-[14px] hover:border-blue-600 hover:text-blue-600 transition-all duration-300 hover:-translate-y-0.5 flex items-center justify-center gap-2 shadow-sm">
+              <button
+                onClick={() => navigate('/login')}
+                className="w-full sm:w-auto px-8 py-4 text-slate-700 font-medium bg-white border border-gray-200 rounded-[14px] hover:border-blue-600 hover:text-blue-600 transition-all duration-300 hover:-translate-y-0.5 flex items-center justify-center gap-2 shadow-sm">
                 Login <LogIn className="w-4 h-4" />
               </button>
             </div>

@@ -1,7 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { ArrowRight, CalendarDays, Users, Shield } from 'lucide-react';
 export function CTA() {
+  const navigate = useNavigate();
   return (
     <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -59,7 +61,9 @@ export function CTA() {
               management. Built for HR teams, loved by employees.
             </p>
             <div className="flex flex-col sm:flex-row items-center gap-4 justify-center md:justify-start">
-              <button className="w-full sm:w-auto px-8 py-4 bg-white text-blue-600 font-bold rounded-[14px] hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] transition-all duration-300 hover:-translate-y-1 text-base flex items-center justify-center gap-2">
+              <button
+                onClick={() => navigate('/register')}
+                className="w-full sm:w-auto px-8 py-4 bg-white text-blue-600 font-bold rounded-[14px] hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] transition-all duration-300 hover:-translate-y-1 text-base flex items-center justify-center gap-2">
                 Get Started Now <ArrowRight className="w-4 h-4" />
               </button>
             </div>
