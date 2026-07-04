@@ -48,7 +48,11 @@ export function Auth({ initialView = 'login' }: AuthProps) {
     e.preventDefault();
     setIsLoading(true);
     await new Promise((r) => setTimeout(r, 1200));
-    const isAdmin = loginData.email.toLowerCase().includes('admin');
+    
+    // Retrieve role from localStorage or fallback to checking if email contains 'admin'
+    const storedRole = localStorage.getItem(`user_role_${loginData.email.toLowerCase()}`);
+    const isAdmin = storedRole === 'admin' || loginData.email.toLowerCase().includes('admin');
+    
     navigate(isAdmin ? '/admin' : '/employee');
   };
 
@@ -56,6 +60,12 @@ export function Auth({ initialView = 'login' }: AuthProps) {
     e.preventDefault();
     setIsLoading(true);
     await new Promise((r) => setTimeout(r, 1200));
+    
+    // Store user role in localStorage to associate this email with the registered role
+    if (registerData.role) {
+      localStorage.setItem(`user_role_${registerData.email.toLowerCase()}`, registerData.role);
+    }
+    
     navigate(registerData.role === 'admin' ? '/admin' : '/employee');
   };
 
